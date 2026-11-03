@@ -1,0 +1,70 @@
+{
+  "lcsc": "C18186482",
+  "mpn": "KH-12X12X6H-SMT-D",
+  "manufacturer": "kinghelm(金航标)",
+  "kind": "button",
+  "package": "SMD 12 × 12 mm, 6 mm high",
+  "footprint": "SW-SMD_4P-L12.0-W12.0-P5.00-LS15.2",
+  "jlc_class": "Extended Part",
+  "datasheet": {
+    "url": "https://datasheet.lcsc.com/datasheet/pdf/ef02e6e5fb51907e83080d5129d49937.pdf?productCode=C18186482",
+    "pinout_page": 7
+  },
+  "pins": {
+    "1": {
+      "name": "1",
+      "type": "passive",
+      "role": "a"
+    },
+    "2": {
+      "name": "2",
+      "type": "passive",
+      "role": "a"
+    },
+    "3": {
+      "name": "3",
+      "type": "passive",
+      "role": "b"
+    },
+    "4": {
+      "name": "4",
+      "type": "passive",
+      "role": "b"
+    }
+  },
+  "values": {
+    "r_on_ohm": 0.1,
+    "force_n": 1.6
+  },
+  "limits": {
+    "i_max_a": 0.05,
+    "v_max_v": 12,
+    "t_min_c": -20,
+    "t_max_c": 70
+  },
+  "body": {
+    "h_mm": 6
+  },
+  "spice": {},
+  "sources": [
+    "Kinghelm KH-12X12X6H-SMT-D product approval sheet, issue 001 2020-11-17, p. 3: rating DC 12 V 50 mA, contact resistance ≤ 100 mΩ, 1 pole 1 throw; p. 2: operating -20…70 °C",
+    "same, p. 7 drawing: circuit diagram 1–2 and 3–4 connected inside, the contact between the pairs; body 12 × 12 mm. Actuation force: the sheet lists 160 ± 30 gf and 260 ± 50 gf without saying which the 6H-SMT-D has – force_n 1.6 is the lower one, feel only",
+    "footprint SW-SMD_4P-L12.0-W12.0-P5.00-LS15.2: pads 1 and 2 on the 14 mm span (one internal pair), 3 and 4 the other – agrees with the circuit diagram"
+  ],
+  "verified": {
+    "by": "Claude Opus 5.5 (datasheet check, automated)",
+    "date": "2026-11-03",
+    "datasheet": "Kinghelm KH-12X12X6H-SMT-D approval sheet, issue 001 (2020-11-17)",
+    "datasheet_sha256": "900fbe52caed89e55d114c6562749260b40d8f7f203cefb0f5d200d40c23d704",
+    "checked": [
+      "internal connection 1–2, 3–4",
+      "12 V, 50 mA, 100 mΩ",
+      "-20…70 °C",
+      "land pattern: drawing p. 7 pads 2.0 × 1.3 mm at 13.6 mm span, footprint 2.54 × 1.4 mm at 14.0 mm, both 5.0 mm pitch – the feet (15 mm over the tips) land fully (M-1 review, note 4)"
+    ],
+    "open": []
+  },
+  "compliance": {
+    "source": "RoHS not stated in the approval sheet – LCSC's product page to read for a gift or sale"
+  }
+}

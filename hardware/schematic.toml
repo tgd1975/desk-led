@@ -1,0 +1,3 @@
+# Schematic of desk-led (edakit handbook 10.3) – [layout] and its notes follow once the graph has parts
+
+style = "labels"                  # stubs and net flags, edakit's default (D-1)

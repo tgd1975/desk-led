@@ -1,0 +1,57 @@
+{
+  "lcsc": "C48601332",
+  "mpn": "CR2032-B1",
+  "manufacturer": "HanElectricity(瀚源)",
+  "kind": "battery_holder",
+  "package": "SMD, 32.2 × 16 mm, 5.5 mm high",
+  "footprint": "BAT-SMD_CR2032-B1",
+  "jlc_class": "Extended Part",
+  "datasheet": {
+    "url": "https://datasheet.lcsc.com/datasheet/pdf/ecd68060011f8157ebecff7f4da4b153.pdf?productCode=C48601332",
+    "pinout_page": 1
+  },
+  "pins": {
+    "1": {
+      "name": "+",
+      "type": "passive",
+      "role": "plus"
+    },
+    "2": {
+      "name": "-",
+      "type": "passive",
+      "role": "minus"
+    }
+  },
+  "values": {},
+  "limits": {},
+  "body": {
+    "h_mm": 5.5
+  },
+  "spice": {},
+  "sources": [
+    "HanElectricity CR2032-B1 drawing Rev. A (2015-05-03): body 32.2 × 16 mm, 5.5 mm high; '+' at the right-hand tab, '−' at the left-hand one (top view); land pattern two pads 2.9 × 3.6 mm, 29.3 mm apart, and an 11 × 7 mm hatched area between them",
+    "footprint BAT-SMD_CR2032-B1: pads 2.9 × 3.6 mm, 29.3 mm apart; the silkscreen '+' beside pad 1 – pin 1 plus, pin 2 minus, as the EasyEDA symbol names them",
+    "no current or voltage rating in the drawing: the cell (3 V, a few mA) sets both"
+  ],
+  "verified": {
+    "by": "Claude Opus 5.5 (datasheet check, automated)",
+    "date": "2026-11-03",
+    "datasheet": "HanElectricity CR2032-B1 drawing Rev. A (2015-05-03)",
+    "datasheet_sha256": "416d83aba1c32b518d3b26632fce4d9bfe48679abebb011486e015d05f40182d",
+    "checked": [
+      "pin 1 plus, pin 2 minus: drawing '+' at the tab on pad 1's side, footprint '+' beside pad 1",
+      "pad size and pitch of the footprint = the drawing's land pattern (2.9 × 3.6 mm, 29.3 mm)",
+      "two SMD tabs: JLCPCB places it in Economic assembly (edakit stock --lcsc, 2026-11-03)"
+    ],
+    "open": [
+      {
+        "text": "BT1 turned by 180° swaps plus and minus: its orientation in JLCPCB's assembly preview",
+        "when": "order"
+      },
+      "the drawing's hatched 11 × 7 mm area between the pads: keep it free of copper and vias (the cell's minus contact passes there) – for the layout"
+    ]
+  },
+  "compliance": {
+    "source": "RoHS not stated in the drawing – LCSC's product page to read for a gift or sale"
+  }
+}

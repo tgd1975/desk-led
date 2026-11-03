@@ -1,0 +1,7 @@
+# edakit
+build/
+
+# IDE
+.vscode/
+*.swp
+*~

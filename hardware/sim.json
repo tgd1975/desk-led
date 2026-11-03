@@ -1,0 +1,89 @@
+{
+  "about": "Scenarios for `edakit sim`: two cell states x button pressed or released x the LED's forward-voltage corners, and a cell upside down. Cell data as in edakit's example coin-cell-led (handbook 17), with its sources.",
+  "ambient_c": 40,
+  "cells": {
+    "fresh": {
+      "v": 3.2,
+      "r": 20,
+      "i_max_a": 0.003,
+      "note": "off-load voltage of a fresh CR2032 at least 3.20 V (CR2032 specification, Farnell 1728774); internal resistance at most 20 Ohm fresh (Rayovac CR2032 S6600072 Issue E, 1 kHz, 10 mA pulse); at most 3 mA continuous, 15 mA in pulses (Jauch CR 2032 H2B technical data sheet, 15092025: Max. Continuous Current 3 mA, Max. Pulse Current 15 mA; Murata TCN-CR-002-E gives 20 mA for 2 s pulses and calls more than 10 mA a high drain with a large voltage drop) – the continuous value, a press of SW1 is no pulse of a defined length"
+    },
+    "used": {
+      "v": 2.5,
+      "r": 40,
+      "i_max_a": 0.003,
+      "note": "Rayovac rates the capacity down to 2.5 V (220 mAh at 15 kOhm); 40 Ohm assumed – the internal resistance rises as the cell empties, no datasheet gives it; at most 3 mA continuous, 15 mA in pulses (Jauch CR 2032 H2B technical data sheet, 15092025: Max. Continuous Current 3 mA, Max. Pulse Current 15 mA; Murata TCN-CR-002-E gives 20 mA for 2 s pulses and calls more than 10 mA a high drain with a large voltage drop) – the continuous value, a press of SW1 is no pulse of a defined length"
+    },
+    "reversed": {
+      "v": -3.2,
+      "r": 20,
+      "note": "a fresh cell put in upside down – the holder takes it that way"
+    }
+  },
+  "supplies": {
+    "fresh": {
+      "BT1": "fresh"
+    },
+    "used": {
+      "BT1": "used"
+    }
+  },
+  "loads": {
+    "pressed": {
+      "about": "SW1 held down",
+      "buttons": [
+        "SW1"
+      ],
+      "leds_on": [
+        "D1"
+      ]
+    },
+    "released": {
+      "about": "nobody presses",
+      "leds_on": []
+    },
+    "pressed_reversed": {
+      "about": "SW1 held down with the cell upside down: D1 must stay dark",
+      "buttons": [
+        "SW1"
+      ],
+      "leds_on": [],
+      "matrix": false
+    }
+  },
+  "corners": [
+    "min",
+    "max"
+  ],
+  "derating": {
+    "p": 0.5,
+    "i": 0.8,
+    "v_cap": 0.67,
+    "v_diode": 0.67,
+    "v_bjt": 0.67
+  },
+  "report": [
+    "VBAT",
+    "LED_SW",
+    "LED_ANODE"
+  ],
+  "extra_scenarios": [
+    {
+      "name": "reversed/pressed",
+      "supply": {
+        "BT1": "reversed"
+      },
+      "load": "pressed_reversed",
+      "corner": "max"
+    }
+  ],
+  "criteria": {
+    "net_range_tol_v": 0.05,
+    "led_on_min_ratio": 0.8,
+    "led_off_max_a": 1e-05,
+    "rail_tol": 0.03,
+    "tj_max_c": 110,
+    "led_on_min_a": 0.0005
+  },
+  "criteria_note": "led_on_min_a 0.5 mA: D1 (LTST-C170KGKT, 18–71 mcd at 20 mA) gives about 0.03 × IV there by Fig. 4 of DS22-2000-073 Rev. H, 0.5–2 mcd – visibly lit on a desk indoors; edakit's default 1 mA is not reached by a D1 of the highest VF bin on a cell used down to 2.5 V (0.82 mA, D-4)"
+}

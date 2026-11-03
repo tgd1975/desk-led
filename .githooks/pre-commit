@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Pre-commit hook (edakit handbook 2.7). Never bypass it with --no-verify.
+# >>> edakit hook 1 >>>
+# Written by `edakit hook install`, renewed by it – the project's own steps go outside this block (handbook 2.7).
+# edakit check, sim and the other steps of each configuration whose files are staged; a failure blocks the commit.
+cd "$(git rev-parse --show-toplevel)" || exit 1
+ek=${EDAKIT:-}
+[ -n "$ek" ] || ek=$(command -v edakit 2>/dev/null || true)
+[ -n "$ek" ] || ek=$(python3 -c 'import json, os, sys
+base = os.environ.get("CLAUDE_CONFIG_DIR") or os.path.expanduser("~/.claude")
+try:
+    d = json.load(open(os.path.join(base, "plugins", "installed_plugins.json")))
+except (OSError, ValueError):
+    sys.exit()
+rank = {"local": 0, "project": 1, "user": 2, "managed": 3}
+mine = [e for n, es in d.get("plugins", d).items() if n.startswith("edakit@") and isinstance(es, list) for e in es
+        if e.get("projectPath") in (None, sys.argv[1])]
+if mine:
+    print(os.path.join(min(mine, key=lambda e: rank.get(e.get("scope"), 9)).get("installPath", ""), "bin", "edakit"))' "$PWD" 2>/dev/null || true)
+if [ -z "$ek" ] || [ ! -x "$ek" ]; then
+  echo "pre-commit: edakit not found – set EDAKIT=/path/to/edakit, put it on the PATH or install the Claude Code plugin"
+  exit 1
+fi
+# through cat: uv from snap prints nothing and exits 120 when its output goes into a file
+# – and safe under the project's set -euo pipefail
+rcf=$(mktemp); { "$ek" hook run 2>&1 && echo 0 >"$rcf" || echo $? >"$rcf"; } | cat; rc=$(cat "$rcf"); rm -f "$rcf"
+[ "$rc" = 0 ] || exit "$rc"
+# <<< edakit hook <<<

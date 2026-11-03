@@ -1,0 +1,166 @@
+{
+ "date": "2026-11-03",
+ "source": "JLCPCB assembly catalogue (selectSmtComponentList) and part pages (jlcpcb.com/partdetail/<LCSC>)",
+ "parts": {
+  "C17630": {
+   "date": "2026-11-03",
+   "listed": true,
+   "class": "Basic Part",
+   "preferred": false,
+   "stock": 1779785,
+   "mpn": "0805W8F3300T5E",
+   "attrition": 10,
+   "min_qty": 20,
+   "price_breaks": [
+    [
+     1,
+     0.0044
+    ],
+    [
+     1000,
+     0.0035
+    ],
+    [
+     5000,
+     0.003
+    ],
+    [
+     10000,
+     0.0026
+    ],
+    [
+     50000,
+     0.0024
+    ],
+    [
+     100000,
+     0.0022
+    ]
+   ],
+   "assembly_type": "Economic and Standard",
+   "msl": null,
+   "xray": false,
+   "mode": "smt"
+  },
+  "C98221": {
+   "date": "2026-11-03",
+   "listed": true,
+   "class": "Extended Part",
+   "preferred": false,
+   "stock": 187881,
+   "mpn": "LTST-C170KGKT",
+   "attrition": 8,
+   "min_qty": 20,
+   "price_breaks": [
+    [
+     1,
+     0.0307
+    ],
+    [
+     200,
+     0.0233
+    ],
+    [
+     600,
+     0.0192
+    ],
+    [
+     3000,
+     0.0154
+    ],
+    [
+     9000,
+     0.0133
+    ],
+    [
+     21000,
+     0.0121
+    ]
+   ],
+   "assembly_type": "Economic and Standard",
+   "msl": 2,
+   "xray": false,
+   "mode": "smt"
+  },
+  "C18186482": {
+   "date": "2026-11-03",
+   "listed": true,
+   "class": "Extended Part",
+   "preferred": false,
+   "stock": 14474,
+   "mpn": "KH-12X12X6H-SMT-D",
+   "attrition": 0,
+   "min_qty": 2,
+   "price_breaks": [
+    [
+     1,
+     0.0489
+    ],
+    [
+     100,
+     0.0388
+    ],
+    [
+     300,
+     0.0335
+    ],
+    [
+     1000,
+     0.0297
+    ],
+    [
+     5000,
+     0.0266
+    ],
+    [
+     10000,
+     0.0251
+    ]
+   ],
+   "assembly_type": "Economic and Standard",
+   "msl": null,
+   "xray": false,
+   "mode": "smt"
+  },
+  "C48601332": {
+   "date": "2026-11-03",
+   "listed": true,
+   "class": "Extended Part",
+   "preferred": false,
+   "stock": 1052,
+   "mpn": "CR2032-B1",
+   "attrition": 0,
+   "min_qty": 2,
+   "price_breaks": [
+    [
+     1,
+     0.2114
+    ],
+    [
+     50,
+     0.1669
+    ],
+    [
+     120,
+     0.1478
+    ],
+    [
+     480,
+     0.124
+    ],
+    [
+     2400,
+     0.1134
+    ],
+    [
+     4800,
+     0.107
+    ]
+   ],
+   "assembly_type": "Economic and Standard",
+   "msl": null,
+   "xray": false,
+   "mode": "smt"
+  }
+ }
+}

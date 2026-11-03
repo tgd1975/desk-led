@@ -1,0 +1,73 @@
+{
+  "lcsc": "C98221",
+  "mpn": "LTST-C170KGKT",
+  "manufacturer": "LITEON(光宝)",
+  "kind": "led",
+  "package": "0805",
+  "footprint": "LED0805-R-RD",
+  "jlc_class": "Extended Part",
+  "datasheet": {
+    "url": "https://datasheet.lcsc.com/datasheet/pdf/df825b6c68a749899bf3cb9f98af74d4.pdf?productCode=C98221",
+    "pinout_page": 2
+  },
+  "pins": {
+    "1": {
+      "name": "A",
+      "type": "passive",
+      "role": "anode"
+    },
+    "2": {
+      "name": "K",
+      "type": "passive",
+      "role": "cathode"
+    }
+  },
+  "values": {
+    "color": "green",
+    "vf_min_v": 1.9,
+    "vf_typ_v": 2.15,
+    "vf_max_v": 2.4,
+    "vf_at_a": 0.02,
+    "rs_ohm": 2
+  },
+  "limits": {
+    "if_max_a": 0.03,
+    "vr_max_v": 5,
+    "p_max_w": 0.075,
+    "t_min_c": -55,
+    "t_max_c": 85
+  },
+  "body": {
+    "h_mm": 1.1
+  },
+  "spice": {},
+  "sources": [
+    "Lite-On LTST-C170KGKT data sheet DS22-2000-073 Rev. H: absolute maximum ratings at 25 °C – power dissipation 75 mW, DC forward current 30 mA, reverse voltage 5 V, operating -55 to +85 °C",
+    "same, electrical/optical characteristics at 20 mA: VF 1.90 min, 2.40 max (no typical value); λd 567.5/571.0/576.5 nm (AlInGaP green, water-clear lens); IV 18/35/71 mcd",
+    "vf_typ_v 2.15: assumption – the midpoint of min and max, the data sheet gives no typical value",
+    "rs_ohm 2: Fig. 2 p. 5 (forward current vs. forward voltage, typical, 25 °C) – about 1.97 V near 0 mA to 2.05 V at 50 mA, ≈ 1.6–2 Ω; the low-current knee cannot be read off the linear scale, so the ideality stays at edakit's 2 (M-1 review, note 2)",
+    "package drawing p. 2: 2.0 × 1.25 × 1.1 mm, cathode marked; pin names A/K from the EasyEDA symbol, footprint LED0805-R-RD: arrow and chamfered outline at pad 2 = cathode"
+  ],
+  "verified": {
+    "by": "Claude Opus 5.5 (datasheet check, automated)",
+    "date": "2026-11-03",
+    "datasheet": "Lite-On LTST-C170KGKT DS22-2000-073 Rev. H",
+    "datasheet_sha256": "e513a527a6e92db4de32e048a227fbd7ec2c837263d9c5765577e7e362a66155",
+    "checked": [
+      "IF 30 mA DC, PD 75 mW, VR 5 V, -55…85 °C",
+      "VF 1.90–2.40 V at 20 mA – low enough to light from a used CR2032 (2.5 V)",
+      "pin 1 anode, pin 2 cathode: symbol A/K, footprint marks pad 2",
+      "RS ≈ 2 Ω from Fig. 2 (M-1 review, note 2)"
+    ],
+    "open": [
+      {
+        "text": "D1 polarity in JLCPCB's assembly preview: cathode at pad 2",
+        "when": "order"
+      }
+    ]
+  },
+  "compliance": {
+    "rohs": true,
+    "source": "Lite-On DS22-2000-073 Rev. H, p. 2 features: 'Meet RoHS'"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "about": "Sign-offs for the release gate (edakit gate). Each one counts only for the hash of its scope: 'circuit' = state_sha256 (graph, parts database, simulation config), 'electrical' = electrical_sha256 (the same without the footprint data of the parts entries – M-6), 'layout' = layout_sha256 (board files with their artwork, footprint geometry), 'fab' = fab_sha256 (what the manufacturer builds from: Gerber layers rasterised, drill hits, BOM and CPL rows – in the protocol header of a gate run with stage F). When something there changes, it no longer counts – copy the new hash from the protocol header after the check was repeated. phase: 'export' blocks the release, 'order' and 'acceptance' come after the export. An accepted warning with scope 'decision' counts regardless of the hash and refers to a numbered decision in the docs. Parts are signed in their parts entry (field 'verified').",
+  "state_sha256": "ce3ff938e1d0b801b49e42ce19b540e9a409126da294fd61bfd16b5219ec27df",
+  "electrical_sha256": "9a8b3a08c83587d173a2ae7ce87fc045d0ddf49c7224c3aedc93b6ef559e8538",
+  "layout_sha256": null,
+  "fab_sha256": null,
+  "manual": [
+    {
+      "id": "M-1",
+      "phase": "export",
+      "scope": "circuit",
+      "text": "Critical parts (the coin cell holder, the LED, the button) checked a second time against the datasheet, independently – e.g. by the agent electrical-reviewer in its own session",
+      "done_by": "Claude (agent electrical-reviewer)",
+      "date": "2026-11-03",
+      "note": "OK, 7 notes worked in (D-4, D-5); requirements met: R-1, R-2, R-4, R-5"
+    },
+    {
+      "id": "M-6",
+      "phase": "export",
+      "scope": "electrical",
+      "text": "Regulatory review: circuit and parts against EU law for the purpose in the graph (RoHS, REACH, batteries, product safety) – e.g. by the agent regulatory-reviewer in its own session. No finding 'block' open. Support, not legal advice: no claim to correctness, nothing legally guaranteed",
+      "done_by": "Claude (agent regulatory-reviewer)",
+      "date": "2026-11-03",
+      "note": "OK for purpose private, 7 notes, none block or important (D-4). Support, not legal advice: no claim to correctness, nothing legally guaranteed"
+    },
+    {
+      "id": "M-5",
+      "phase": "export",
+      "scope": "fab",
+      "text": "Layout reviewed independently (manufacturability, mechanics, operation, looks) on the manufacturing files of a gate run with this layout – e.g. by the agent pcb-reviewer. No finding 'block' open, every 'important' finding fixed or rejected by the owner",
+      "done_by": null,
+      "date": null,
+      "note": null
+    },
+    {
+      "id": "M-2",
+      "phase": "order",
+      "scope": "fab",
+      "text": "At JLCPCB after the upload: assembly preview – rotation and polarity of every polarised part (compare with polarity_<board>.png); BOM without missing parts; price",
+      "done_by": null,
+      "date": null,
+      "note": null
+    },
+    {
+      "id": "M-4",
+      "phase": "acceptance",
+      "scope": "layout",
+      "text": "Acceptance test of every delivered board: visual check, cell inserted, LED off at rest, LED lights while the button is pressed",
+      "done_by": null,
+      "date": null,
+      "note": null
+    }
+  ],
+  "accept": []
+}

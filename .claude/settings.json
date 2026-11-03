@@ -1,0 +1,6 @@
+{
+  "extraKnownMarketplaces": {
+    "edakit": {"source": {"source": "github", "repo": "tgd1975/edakit"}}
+  },
+  "enabledPlugins": {"edakit@edakit": true}
+}

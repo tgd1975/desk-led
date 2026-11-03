@@ -1,0 +1,94 @@
+# The hardware graph (handbook 3.1): components, nets and cables keyed by designator and name, pins by name
+# or role through the parts entries. edakit graph json writes the resolved graph beside it (graph.json).
+name = "desk-led"
+version = "0.1"
+date = "2026-11-03"
+description = """\
+  Desk LED: a coin cell, a push button and an LED on one small board – press the button and the LED lights."""
+
+[purpose]
+use = "private"
+market = "EU"
+country = "AT"
+notes = """\
+  A small board for the owner's own desk in Austria, built and used by the owner – not sold or given away (D-1). \
+  Powered by a coin cell; no mains, no radio."""
+
+[conventions]
+pin_reference = """\
+  '<designator>.<pin>' with the pin's name or role, else its symbol number – the parts entry says which pin that is"""
+v = "per net: [min, max] in V over all operating states"
+accept = "per net or component: {code: reason} accepts a finding on purpose (edakit explain <code>)"
+
+# The cell: a CR2032 in an SMD holder JLCPCB places (R-2, R-3)
+[components.BT1]
+type = "battery_holder"
+label = "CR2032 holder"
+part = "CR2032-B1"
+lcsc = "C48601332"
+notes = """\
+  Pin 1 = plus, pin 2 = minus (HanElectricity drawing Rev. A, footprint '+' at pad 1). SMD, placed by JLCPCB in \
+  Economic assembly (R-3, D-3)."""
+accept = { "LIM.i/cell" = "SW1 is pressed for a moment: while it is held a fresh cell gives up to 4.0 mA, above its 3 mA continuous and below its 15 mA pulse current (Jauch CR 2032 H2B); held longer it costs capacity and voltage, no harm – the voltage drop is in the simulation by the cell's r (D-3)" }
+
+# The button: 12 x 12 mm tactile, pins 1/2 and 3/4 connected inside (R-5)
+[components.SW1]
+type = "button"
+label = "Push button 12 × 12 mm"
+part = "KH-12X12X6H-SMT-D"
+lcsc = "C18186482"
+notes = "Pins 1/2 and 3/4 are connected inside (Kinghelm drawing p. 7). Wired on the diagonal 1 and 4, so it works whichever way the pairs run – the drawing does not number the pads (M-1 review, note 5)."
+nc = ["2", "3"]
+
+[components.R1]
+type = "resistor"
+label = "LED series resistor"
+part = "0805W8F3300T5E"
+lcsc = "C17630"
+value = "330"
+notes = """\
+  330 Ω: from a fresh cell at most 4.0 mA into D1 (lowest VF), from a used cell (2.5 V, 40 Ω) into a D1 of the highest \
+  VF bin below 1 mA – still lit; 270 Ω would give 0.97 mA there and 5 mA fresh, no real gain (sim, D-3, D-4)."""
+
+# The LED: AlInGaP green (571 nm), lights from a used cell (R-1, R-4)
+[components.D1]
+type = "led"
+label = "LED (green 0805)"
+part = "LTST-C170KGKT"
+lcsc = "C98221"
+value = "green"
+notes = """\
+  AlInGaP green, VF 1.9–2.4 V at 20 mA – an InGaN green (2.6–3.1 V) stays dark on a used CR2032 (D-3)."""
+
+[nets.VBAT]
+pins = ["BT1.plus", "SW1.1"]
+v = [-3.3, 3.3]
+notes = "the cell: 3.0 V nominal, 3.2 V and a little more fresh off load; negative with the cell upside down"
+
+[nets.LED_SW]
+pins = ["SW1.4", "R1.1"]
+v = [-3.3, 3.3]
+notes = "the cell's voltage while SW1 is pressed"
+accept = { "PATH.reverse" = "a cell upside down drives R1 and D1 backwards: D1 blocks, 3.2 V against its VR of 5 V – sim scenario reversed/pressed (LIM.v reverse voltage, SIM.state LED dark); a Schottky in series would cost the 0.3 V the used cell needs (D-3)" }
+
+[nets.LED_ANODE]
+pins = ["R1.2", "D1.anode"]
+v = [-3.3, 3.3]
+
+[nets.GND]
+pins = ["BT1.minus", "D1.cathode"]
+v = [0, 0]
+
+[layout]
+fixed = ["BT1", "SW1", "D1"]
+notes = [
+  "the cell (Ø 20 mm) stands out of BT1 (16 mm wide) on both long sides: keep them free, with room to lever the cell out",
+  "BT1's drawing hatches 11 × 7 mm between its pads: no copper and no vias there",
+  "D1 next to SW1: the LED shows the press",
+  "silkscreen beside BT1: a '+' and the cell's outline, so the cell goes in plus side up – the holder takes it either way, and upside down it may stay dark or short (M-1 review, note 1)",
+  "board size: fit to the parts (D-1)",
+]
+
+[accept]
+"HINT.bulk" = "no cable and no plug: the cell sits in BT1 on the board, the only load is D1 (at most 4.0 mA)"
+"HINT.lithium" = "a CR2032 is a primary Li-MnO2 cell, not Li-ion: nothing on the board charges it (LIM.backfeed) and it is not recharged"

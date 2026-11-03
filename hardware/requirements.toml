@@ -1,0 +1,56 @@
+# What the circuit of desk-led must do (edakit handbook 3.6, 10.4) – needs in the owner's words, requirements as the
+# owner stated them; only the owner accepts an entry.
+
+[[need]]
+id = "N-1"
+text = "A board for my desk: a coin cell, a push button and an LED. Press the button and the LED lights."
+who = "the owner"
+source = "the owner, 2026-11-03"
+status = "accepted"
+
+[[requirement]]
+id = "R-1"
+text = "The LED lights only while the button is held."
+source = "the owner, 2026-11-03 (D-2)"
+from = ["N-1", "D-2"]
+binding = "must"
+verify = [{ rows = "SIM.state * * LED on" },
+          { rows = "SIM.state * * LED dark" },
+          { accept = "cell in, press the button: the LED lights; let go: the LED is dark" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-2"
+text = "Runs from a CR2032 coin cell."
+source = "the owner, 2026-11-03 (D-2)"
+from = ["N-1", "D-2"]
+binding = "must"
+verify = [{ accept = "with a fresh CR2032 in the holder: press the button, the LED lights" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-3"
+text = "JLCPCB places the SMD parts on the top side (Economic assembly)."
+source = "D-1"
+from = ["D-1", "D-2"]
+binding = "must"
+verify = [{ signoff = "M-2" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-4"
+text = "The LED is green."
+source = "the owner, 2026-11-03 (D-2)"
+from = ["N-1", "D-2"]
+binding = "should"
+verify = [{ accept = "press the button: the LED lights green" }]
+status = "accepted"
+
+[[requirement]]
+id = "R-5"
+text = "The push button is a 12 × 12 mm tactile switch."
+source = "the owner, 2026-11-03 (D-2)"
+from = ["N-1", "D-2"]
+binding = "should"
+verify = [{ accept = "the button is a 12 × 12 mm tactile switch" }]
+status = "accepted"
