@@ -12,7 +12,11 @@ jeder Änderung die Datei frisch lesen und nur eigene Zeilen ändern (außer Ken
 Datum ans Ende, nach „## Erledigt“ am Ende verschieben, neueste zuerst. Keine Zeile wird gelöscht. Überschriften
 gruppieren offene Todos; ist unter einer keines mehr offen, gehen Überschrift und Text, bis das nächste dazukommt.
 
-Nächste Kennung: TD-2
+Nächste Kennung: TD-3
+
+## Für dich
+
+- [ ] TD-2 - **Was:** Repo öffentlich machen: `gh repo edit tgd1975/desk-led --visibility public --accept-visibility-change-consequences` – als Beispiel-Repo und für den Galerie-Eintrag in edakit (#343) braucht es einen öffentlichen Link; angelegt ist es privat. *(desk-led)*
 
 ## Erledigt
 

@@ -91,9 +91,17 @@ the cell, one under SW1's body –, no track between the pads of a part or past 
   pour on the bottom judged without risk. The last step (D1 turned, GND pour-only) was not reviewed again – the
   release's M-5 review reads it. Not a layout matter: stick-on feet.
 
-edakit: open – NO_POURS regions for `[[routing.keepouts]]` with `what = "all"` (the project script then goes); the
-pour fill that fails on easyeda-mcp-pro 1.8.0; GEO.pour also on faces that are not poured; a check for a track between
-the two pads of another part and for vias within a few tenths of an SMD pad.
+edakit: open – proposed on 2026-11-03, each as its own issue:
+[#335](https://github.com/tgd1975/edakit/issues/335) keep-outs with `what = "all"` keep pours out (the project script
+then goes); [#336](https://github.com/tgd1975/edakit/issues/336) pours fill on easyeda-mcp-pro 1.8.0;
+[#337](https://github.com/tgd1975/edakit/issues/337) `schematic copy` on a fresh project failed with
+"DMT_Schematic.getSchematicInfo: TypeError … 'Symbol'" and should point to `schematic layout`, which built the board
+schematic instead; [#338](https://github.com/tgd1975/edakit/issues/338) a `[[silk.art]]` entry with `file =` instead of
+`svg` passed `pcb plan` and crashed `silk apply` (KeyError); [#339](https://github.com/tgd1975/edakit/issues/339)
+`ensure_pcb_focus` in a project script before `open_pcb` crashed (KeyError 'uuid'); the rules
+[#340](https://github.com/tgd1975/edakit/issues/340) GEO.pour also on a seen face without a pour,
+[#341](https://github.com/tgd1975/edakit/issues/341) vias keep a distance from reflowed SMD pads and
+[#342](https://github.com/tgd1975/edakit/issues/342) no track between the two pads of a small chip part.
 
 ## D-7 MIT licence, licence check, public example repository (2026-11-03)
 
@@ -109,3 +117,6 @@ that: LICENSE is MIT with its copyright line; the Licence section says MIT and t
 tracked file of a kind that usually comes from someone else (PDF, 3D model, library footprint or symbol, EDA archive,
 photo) is named in a row of it, and every row's path exists; every parts entry names its sources. Reason: the owner's
 wish – the licence on MIT and a licence check after edakit's. A reading of the licences, not legal advice.
+
+Registered in edakit's gallery with the form "built with edakit": [#343](https://github.com/tgd1975/edakit/issues/343).
+The repository is private until the owner makes it public.

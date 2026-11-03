@@ -51,7 +51,9 @@ The layout needed two things edakit 1.1.0 lacks, both written down in [D-6](docs
   [`pour_keepouts.py`](hardware/scripts/pour_keepouts.py) sets the region in EasyEDA.
 - **Fill the pours with easyeda-mcp-pro 1.8.0.** The fills were done one by one after a restart of EasyEDA.
 
-Both went to edakit as proposals.
+Both went to edakit as proposals ([#335](https://github.com/tgd1975/edakit/issues/335),
+[#336](https://github.com/tgd1975/edakit/issues/336)), together with six more the project found
+([#337](https://github.com/tgd1975/edakit/issues/337) to [#342](https://github.com/tgd1975/edakit/issues/342)).
 
 ## Licence
 
