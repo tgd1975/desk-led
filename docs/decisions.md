@@ -119,4 +119,4 @@ photo) is named in a row of it, and every row's path exists; every parts entry n
 wish – the licence on MIT and a licence check after edakit's. A reading of the licences, not legal advice.
 
 Registered in edakit's gallery with the form "built with edakit": [#343](https://github.com/tgd1975/edakit/issues/343).
-The repository is private until the owner makes it public.
+The repository is public since 2026-11-03.

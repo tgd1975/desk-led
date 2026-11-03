@@ -14,10 +14,7 @@ gruppieren offene Todos; ist unter einer keines mehr offen, gehen Überschrift u
 
 Nächste Kennung: TD-3
 
-## Für dich
-
-- [ ] TD-2 - **Was:** Repo öffentlich machen: `gh repo edit tgd1975/desk-led --visibility public --accept-visibility-change-consequences` – als Beispiel-Repo und für den Galerie-Eintrag in edakit (#343) braucht es einen öffentlichen Link; angelegt ist es privat. *(desk-led)*
-
 ## Erledigt
 
+- [x] TD-2 - **Repo öffentlich gemacht:** https://github.com/tgd1975/desk-led, Link für den Galerie-Eintrag #343. [2026-11-03]
 - [x] TD-1 - **EasyEDA-Projekt `desk-led` angelegt** (von Hand, wie edakit es braucht). [2026-11-03]
