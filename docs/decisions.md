@@ -59,3 +59,53 @@ short), the hand-over listing parts' open points for the layout, whether LED rev
 
 R-1's evidence gets the simulation rows "LED dark" beside "LED on": the released scenarios test "only while the
 button is held". Text and binding unchanged – the owner's answer to the M-1 review's note 3.
+
+## D-6 Layout of board main, round 1 (2026-11-03)
+
+Board 40 × 40 mm (fit to the parts, D-1), all parts on top, two JLCPCB tooling holes at (2, 38) and (38, 2). BT1
+centred at the top: the cell (Ø 20 mm) ends 2 mm inside the top edge, where it is levered out; 4 mm free between the
+cell and SW1 below it. SW1 on the cell's axis, R1 right of its LED_SW pad, D1 above R1 beside SW1 (the LED shows the
+press), its anode straight above R1's. Freerouting: 3 nets (GND is the top pour alone), 2 vias – both VBAT, one under
+the cell, one under SW1's body –, no track between the pads of a part or past a foreign pad, DRC 0. Placement, keep-out, pours and silkscreen in `hardware/boards/main.toml`.
+
+- **Copper on both faces** (no large copper-free areas): GND poured on top (`pour_only`: both GND pads sit in it, no
+  GND track or via), VBAT on the bottom – GND has no pad or via
+  there, and a fanout via for it would sit beside BT1's tab, visible; VBAT's two vias hold the bottom pour. Measured in
+  the Gerber: 87 % copper on top, 94 % on the bottom, no copper-free circle above Ø 1 mm outside BT1's hatched area.
+  `[copper] min_cover` 40 % per face makes the gate warn when a face loses its pour.
+- **BT1's hatched area kept free literally** (hand-over note): a routing keep-out keeps tracks and vias out, and a
+  NO_POURS region keeps the top pour out. edakit 1.1.0 keeps only hole circles free of its pours, so the project script
+  `pour_keepouts` (`hardware/scripts/pour_keepouts.py`, kind easyeda) sets the region; it stays through later fills.
+  Measured: 0 mm² of top copper in the area. The area is a keep-out of the top face, where the holder's minus contact
+  lies; the bottom pour runs under it, 1.6 mm of laminate away (layout review 3, note 2).
+- **Silkscreen:** the cell's outline, a '+' 2 mm above BT1's plus tab and "+ UP" left of the cell – both stay visible
+  with the cell in. `[looks]`: top is the face on the desk, at most 2 vias.
+- **Pour fills fail with easyeda-mcp-pro 1.8.0:** `route all` fills a net's pours in one rebuild call (M-10); with two
+  pours that came back "no-copper", and after one failure, or once pours had been created in the same EasyEDA session,
+  even a single pour did. What worked: the pours created by edakit (`pcb.pour`), EasyEDA restarted, then each pour
+  rebuilt alone through the bridge, then `pcb apply` for the tooling holes, `route drc`, `silk apply`. This round was
+  routed that way (`route read`, `route`, `check`, `apply` one by one); the next `route all` stops at its pours step
+  the same way until edakit or the bridge changes.
+- Layout reviews 1 to 3 (agent pcb-reviewer) worked in: top pour, "+ UP" and '+' at the tab, SW1 centred with R1/D1
+  beside it, `[looks]`, no track between pads, no via next to a pad, D1 turned so its anode sits above R1's, a VBAT
+  pour on the bottom judged without risk. The last step (D1 turned, GND pour-only) was not reviewed again – the
+  release's M-5 review reads it. Not a layout matter: stick-on feet.
+
+edakit: open – NO_POURS regions for `[[routing.keepouts]]` with `what = "all"` (the project script then goes); the
+pour fill that fails on easyeda-mcp-pro 1.8.0; GEO.pour also on faces that are not poured; a check for a track between
+the two pads of another part and for vias within a few tenths of an SMD pad.
+
+## D-7 MIT licence, licence check, public example repository (2026-11-03)
+
+The repository is public on GitHub as an example of a project built with edakit, under the MIT licence like edakit
+itself (`LICENSE`). Nothing in it is someone else's work: the parts entries quote facts – pins, ratings, order codes –
+from the datasheets and catalogue pages each entry names in `sources`, the datasheets themselves are not in the
+repository; `hardware/boards/main.geometry.json` holds pad positions edakit measured from the library footprints in
+EasyEDA. README.md's Licence section says so, and names any third-party file that comes later with its source and
+licence, as edakit's README does for its test designs.
+
+The project check `licence` (`hardware/scripts/licence_check.py`, stage LIC of the gate and the pre-commit hook) holds
+that: LICENSE is MIT with its copyright line; the Licence section says MIT and that it is not legal advice; every
+tracked file of a kind that usually comes from someone else (PDF, 3D model, library footprint or symbol, EDA archive,
+photo) is named in a row of it, and every row's path exists; every parts entry names its sources. Reason: the owner's
+wish – the licence on MIT and a licence check after edakit's. A reading of the licences, not legal advice.

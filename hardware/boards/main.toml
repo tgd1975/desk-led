@@ -1,0 +1,66 @@
+# Board main of desk-led: outline, tooling holes, placement plan, keep-outs, silkscreen (edakit handbook 10.2).
+# Written by the PCB designer from `edakit handover`; plan coordinates in mm, seen from the top, y up. The layout
+# hash covers this file: a change voids the sign-offs of scope layout.
+
+revision = "1"
+
+[outline]                  # fit to the parts (D-1): the holder's 32.2 mm plus margins, the cell and the button stacked
+rect = [40, 40]
+corner_radius = 2
+
+[tooling]                  # JLCPCB Economic PCBA: two non-plated holes, diagonally opposite
+holes = [[2, 38], [38, 2]]
+
+[place]                    # the hand-over's fixed parts BT1, SW1, D1 – and R1, so that every part has its row (SYNC.plan)
+BT1 = { x = 20, y = 28, rot = 0, side = "top" }    # cell Ø 20 from y 18 to 38: 2 mm to the top edge to lever it out, 4 mm free below
+SW1 = { x = 20, y = 8, rot = 0, side = "top" }     # on the cell's axis; pad 1 (VBAT, top left), pad 4 (LED_SW, bottom right)
+R1  = { x = 31, y = 5.5, rot = 0, side = "top" }   # pad 1 facing SW1's pad 4: LED_SW a short straight stub
+D1  = { x = 31, y = 9.5, rot = 0, side = "top" }   # beside SW1 (the LED shows the press); anode straight above R1's pad 2 (LED_ANODE)
+
+[[routing.keepouts]]       # BT1's drawing hatches 11 × 7 mm between its pads: no copper and no vias there (hand-over)
+layer = "TOP"
+what = "all"
+rect = [14.5, 24.5, 25.5, 31.5]
+
+[[pours]]                  # no large copper-free areas on either face (D-6). Top: ground; BT1's hatched area stays free
+net = "GND"                # by the NO_POURS region of the project script pour_keepouts
+layers = ["TOP"]
+pour_only = true           # both GND pads sit in this pour: no GND track or via (layout review 3)
+
+[[pours]]                  # bottom: VBAT – its two vias (under the cell, under SW1) hold the pour; GND has no pad or via
+net = "VBAT"               # there, and a fanout via would sit beside BT1's tab, visible (D-6)
+layers = ["BOTTOM"]
+
+[copper]
+min_cover = { TOP = 40, BOTTOM = 40 }   # the gate warns when a face loses its pour (layout review 1, finding 1)
+
+[looks]
+visible = "top"            # the face on the desk: stage L counts its tracks and vias
+max_vias = 2              # both under a body (the cell, SW1): a re-route that adds a visible one warns
+
+[silk]
+designators = "top"
+
+[[silk.art]]               # the cell's outline, so it goes in plus side up (M-1 review, note 1)
+svg = "hardware/boards/art/cell.svg"
+width_mm = 21
+x = 20
+y = 28
+fit = "viewbox"
+
+[[silk.texts]]             # "+" beside BT1's plus pad, outside the body and the cell
+text = "+"
+x = 34.65
+y = 33.5
+h_mm = 1.5
+side = "top"
+
+[[silk.texts]]             # visible beside the cell with the cell in: which side goes up (layout review 1, finding 2)
+text = "+ UP"
+x = 6
+y = 16.5
+h_mm = 1.2
+side = "top"
+
+[order]
+remark = "2 tooling holes added by customer."

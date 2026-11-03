@@ -26,3 +26,5 @@ fi
 rcf=$(mktemp); { "$ek" hook run 2>&1 && echo 0 >"$rcf" || echo $? >"$rcf"; } | cat; rc=$(cat "$rcf"); rm -f "$rcf"
 [ "$rc" = 0 ] || exit "$rc"
 # <<< edakit hook <<<
+# The project's own step (D-7): the licence check – MIT, third-party files named in README.md's Licence section.
+python3 hardware/scripts/licence_check.py >/dev/null || { python3 hardware/scripts/licence_check.py | grep -v '^\['; exit 1; }

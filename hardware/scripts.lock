@@ -1,0 +1,27 @@
+{
+ "about": "The stamps of the project scripts ([scripts.<name>] of edakit.toml): per script, at its last run, its cmd, the script itself and the hash of everything it reads; after an easyeda script ran, what it changed in EasyEDA and what is from before it (changed). edakit run and edakit scripts stamp write it, edakit check and the gate compare it (handbook 8.6). Commit it with what the scripts wrote.",
+ "scripts": {
+  "pour_keepouts": {
+   "stamped": "2026-11-03T18:36:13+01:00",
+   "by": "tobias",
+   "cmd": [
+    "python",
+    "hardware/scripts/pour_keepouts.py",
+    "main"
+   ],
+   "script": "hardware/scripts/pour_keepouts.py",
+   "hashes": {
+    "board:main": "67c99a7c4a136a5efe79e7bc3c97797dcfe2bc58f94094bbd58c31cb404776aa",
+    "hardware/scripts/pour_keepouts.py": "114d7271014f15a454d42d95863dca7a83f2810f5bfa306e5a43bea677deacaf"
+   }
+  }
+ },
+ "changed": {
+  "pcb:main": {
+   "script": "pour_keepouts",
+   "at": "2026-11-03T18:36:13+01:00",
+   "by": "tobias",
+   "from_before": []
+  }
+ }
+}

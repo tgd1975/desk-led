@@ -23,7 +23,7 @@ title = "Desk LED"               # page name of the readable schematic
 template = "generated_main"      # generated from the graph, replaced on every run
 schematic = "layout_main"        # readable schematic; the PCB is linked to it
 pcb = "main"                     # PCB document in EasyEDA
-# file = "hardware/boards/main.toml" – the PCB designer starts it once the parts exist (size: fit to the parts)
+file = "hardware/boards/main.toml"   # outline, placement plan, silkscreen – the PCB designer's
 
 [release]
 assembly = { sides = ["top"], smd_only = true }   # JLCPCB Economic: one side, SMD only (D-1)
@@ -36,3 +36,18 @@ shipping = { jlcpcb = "DHL Express" }
 currency = "EUR"
 rates = { USD = 0.8951 }         # ECB reference rate of 2026-10-30: 1 EUR = 1.1172 USD
 vat_pct = 20                     # Austrian VAT on the order
+
+[scripts.pour_keepouts]          # D-6
+kind = "easyeda"
+cmd = ["python", "hardware/scripts/pour_keepouts.py", "main"]
+about = "NO_POURS regions for the keep-outs with what = \"all\" of board main – BT1's hatched area stays free of the top GND pour, which edakit's pours do not keep free (D-6)"
+reads = ["board:main"]
+writes = ["pcb:main"]
+
+[scripts.licence]                # D-7
+kind = "check"
+id = "LIC"
+cmd = ["python", "hardware/scripts/licence_check.py"]
+about = "The repository is MIT, and every third-party file is named with its licence in README.md's Licence section, as edakit does it (D-7)"
+phase = "export"
+reads = ["LICENSE", "README.md", "parts"]

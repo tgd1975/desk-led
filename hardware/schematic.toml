@@ -1,3 +1,15 @@
-# Schematic of desk-led (edakit handbook 10.3) – [layout] and its notes follow once the graph has parts
+# Schematic of desk-led: one block and its notes (edakit handbook 10.3). In no hash: a note voids no sign-off.
 
 style = "labels"                  # stubs and net flags, edakit's default (D-1)
+
+[layout]
+rows = [
+  [ [ { title = "Press the button, the LED lights", start = ["BT1"] } ] ],
+]
+
+[layout.notes]
+"Press the button, the LED lights" = [
+  "BT1: a CR2032, pin 1 = plus (HanElectricity CR2032-B1 drawing Rev. A)",
+  "SW1 wired on the diagonal 1–4: right whichever way its internal pairs run (D-4)",
+  "R1 330 Ω: at most 4.0 mA from a fresh cell, 0.82 mA into the highest VF bin from a used one (D-4)",
+]
