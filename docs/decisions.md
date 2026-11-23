@@ -75,7 +75,8 @@ the cell, one under SW1's body –, no track between the pads of a part or past 
   `[copper] min_cover` 40 % per face makes the gate warn when a face loses its pour.
 - **BT1's hatched area kept free literally** (hand-over note): a routing keep-out keeps tracks and vias out, and a
   NO_POURS region keeps the top pour out. edakit 1.1.0 keeps only hole circles free of its pours, so the project script
-  `pour_keepouts` (`hardware/scripts/pour_keepouts.py`, kind easyeda) sets the region; it stays through later fills.
+  `pour_keepouts` (`hardware/scripts/pour_keepouts.py`, kind easyeda) set the region; it stayed through later fills.
+  Replaced by the keep-out's `pour = false` of edakit 1.2.6 (D-8).
   Measured: 0 mm² of top copper in the area. The area is a keep-out of the top face, where the holder's minus contact
   lies; the bottom pour runs under it, 1.6 mm of laminate away (layout review 3, note 2).
 - **Silkscreen:** the cell's outline, a '+' 2 mm above BT1's plus tab and "+ UP" left of the cell – both stay visible
@@ -91,7 +92,7 @@ the cell, one under SW1's body –, no track between the pads of a part or past 
   pour on the bottom judged without risk. The last step (D1 turned, GND pour-only) was not reviewed again – the
   release's M-5 review reads it. Not a layout matter: stick-on feet.
 
-edakit: open – proposed on 2026-11-03, each as its own issue:
+edakit: accepted and built, all eight (D-8) – proposed on 2026-11-03, each as its own issue:
 [#335](https://github.com/tgd1975/edakit/issues/335) keep-outs with `what = "all"` keep pours out (the project script
 then goes); [#336](https://github.com/tgd1975/edakit/issues/336) pours fill on easyeda-mcp-pro 1.8.0;
 [#337](https://github.com/tgd1975/edakit/issues/337) `schematic copy` on a fresh project failed with
@@ -120,3 +121,24 @@ wish – the licence on MIT and a licence check after edakit's. A reading of the
 
 Registered in edakit's gallery with the form "built with edakit": [#343](https://github.com/tgd1975/edakit/issues/343).
 The repository is public since 2026-11-03.
+
+## D-8 Released for the gallery, not ordered (2026-11-23)
+
+The owner's decision: board main is released as it stands and published, for edakit's gallery
+([#343](https://github.com/tgd1975/edakit/issues/343)); it will not be ordered – the window for it has passed. The
+release stays a pre-release: M-2 (the maker's preview) and M-4 (the acceptance test) need a board that is ordered and
+delivered.
+
+- **The eight proposals of D-6 are built in edakit:** #337 to #339 in 1.2.3, #340 (GEO.pour on a seen face without a
+  pour) in 1.2.2, #341 and #342 (GEO.spacing for vias at reflowed pads, GEO.under) in 1.2.5, #335 and #336 in 1.2.6.
+  The gate of edakit 1.3.4 passes the board under all of them.
+- **BT1's hatched area by `pour = false`** (#335): the keep-out in `hardware/boards/main.toml` keeps the pour out
+  itself; `edakit route pours` sets the NO_POURS region. The project script `pour_keepouts` and its region in EasyEDA
+  are gone. The pours were refilled in one run of `route pours` on easyeda-mcp-pro 1.11.0, without the restart of D-6.
+  Copper unchanged: every Gerber layer equals round 1's export (layout review M-5). GEO.pour, which measured the area
+  as bare copper (77 mm² on top) while the script held it, now leaves it out: no warning.
+- **M-5** (agent pcb-reviewer) OK on gate run 20261123-082715, three notes kept as they are: the board label "Desk LED
+  rev 1" ends 0.09 mm below SW1's outline; BT1's footprint '+' is crossed by the cell's outline, the polarity stays
+  clear; D-8 was missing when the review ran.
+- Stock snapshot renewed for the release (`edakit stock`, 2026-11-23).
+

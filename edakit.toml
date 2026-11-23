@@ -37,13 +37,6 @@ currency = "EUR"
 rates = { USD = 0.8951 }         # ECB reference rate of 2026-10-30: 1 EUR = 1.1172 USD
 vat_pct = 20                     # Austrian VAT on the order
 
-[scripts.pour_keepouts]          # D-6
-kind = "easyeda"
-cmd = ["python", "hardware/scripts/pour_keepouts.py", "main"]
-about = "NO_POURS regions for the keep-outs with what = \"all\" of board main – BT1's hatched area stays free of the top GND pour, which edakit's pours do not keep free (D-6)"
-reads = ["board:main"]
-writes = ["pcb:main"]
-
 [scripts.licence]                # D-7
 kind = "check"
 id = "LIC"

@@ -20,10 +20,11 @@ D1  = { x = 31, y = 9.5, rot = 0, side = "top" }   # beside SW1 (the LED shows t
 [[routing.keepouts]]       # BT1's drawing hatches 11 × 7 mm between its pads: no copper and no vias there (hand-over)
 layer = "TOP"
 what = "all"
+pour = false               # and no pour: edakit's NO_POURS region in place of the script pour_keepouts (D-8)
 rect = [14.5, 24.5, 25.5, 31.5]
 
 [[pours]]                  # no large copper-free areas on either face (D-6). Top: ground; BT1's hatched area stays free
-net = "GND"                # by the NO_POURS region of the project script pour_keepouts
+net = "GND"                # by the keep-out's pour = false (D-8)
 layers = ["TOP"]
 pour_only = true           # both GND pads sit in this pour: no GND track or via (layout review 3)
 

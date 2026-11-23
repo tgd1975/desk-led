@@ -3,7 +3,7 @@
   "state_sha256": "ce3ff938e1d0b801b49e42ce19b540e9a409126da294fd61bfd16b5219ec27df",
   "electrical_sha256": "9a8b3a08c83587d173a2ae7ce87fc045d0ddf49c7224c3aedc93b6ef559e8538",
   "layout_sha256": null,
-  "fab_sha256": null,
+  "fab_sha256": "9d40f7a429a01f4216c18eae507a0ddee6e3a4ddd29fe941de59bab472b2ef64",
   "manual": [
     {
       "id": "M-1",
@@ -28,9 +28,9 @@
       "phase": "export",
       "scope": "fab",
       "text": "Layout reviewed independently (manufacturability, mechanics, operation, looks) on the manufacturing files of a gate run with this layout – e.g. by the agent pcb-reviewer. No finding 'block' open, every 'important' finding fixed or rejected by the owner",
-      "done_by": null,
-      "date": null,
-      "note": null
+      "done_by": "Claude (agent pcb-reviewer)",
+      "date": "2026-11-23",
+      "note": "OK on gate run 20261123-082715, 3 notes, none block or important (D-8)"
     },
     {
       "id": "M-2",
